@@ -1078,8 +1078,22 @@ th {
     text-indent: initial;
     background-color: #f8f9f9;
     border-radius: 4px;
-    box-shadow: 0 1px 1px rgba(189, 193, 196, 0.25)
+    box-shadow: 0 1px 1px rgba(189, 193, 196, 0.25);
+    cursor: pointer; /* Indicates it's clickable */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and shadow */
 }
+
+.notice:hover {
+    background-color: #d0e4f1; /* Slightly darker shade for hover state */
+    transform: scale(1.025); /* Slightly increase the size */
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2); /* Shadow for a "lifted" effect */
+
+}
+
+.notice.clicked {
+    background-color: #d0e4f1; /* Same as hover color */
+}
+
 
 .notice h4 {
     margin-top: 0 !important;

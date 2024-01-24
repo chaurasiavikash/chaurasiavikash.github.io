@@ -74,6 +74,20 @@
             <script id="MathJax-script" async
               src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
             </script>
+            <script>
+                // Function to toggle the 'clicked' class
+                function toggleClick(element) {
+                    element.classList.toggle('clicked');
+                }
+            
+                // Add click event listeners to all elements with the 'notice--info' class
+                document.querySelectorAll('.notice').forEach(element => {
+                    element.addEventListener('click', function() {
+                        toggleClick(this);
+                    });
+                });
+            </script>
+            
 
             <style>
                 .cv-icon {
@@ -203,9 +217,9 @@
                     <br>
                     <br>
                     <div style="text-align: center;">
-                        <img src="files/gifs/knot_to_unknot.gif" style="max-height: 150px; display: inline-block;" />
-                        <img src="files/gifs/7_3_knot.gif" style="max-height: 180px; display: inline-block;" />
-                        <img src="files/gifs/bennet_M_9_n_3.gif" style="max-height: 180px; display: inline-block;" />
+                        <img src="files/gifs/knot_to_unknot.gif" style="max-height: 168px;  display: inline-block;" />
+                        <img src="files/gifs/7_3_knot.gif" style="max-height: 168px; display: inline-block;" />
+                        <img src="files/gifs/bennet_M_9_n_3.gif" style="max-height: 168px; display: inline-block;" />
                     </div>
                     
                    
@@ -217,7 +231,7 @@
                     the understanding of our results and their
                     applications in shape optimization. Please see the <a href="">gallery</a> and <a href="">interactive visualization </a> for some of my works.  Please <a href="mailto:vikash.chaurasia2@oist.jp" target="_blank">contact me</a> for any questions. 
                     <details>
-                        <summary class="notice--info"><b>More about me</b></summary>
+                        <summary class="notice"><b> Academic Background</b></summary>
                         <p class="notice--info">
                           
                             During my Ph.D. with <a
@@ -255,7 +269,7 @@
                             href="https://books.google.co.jp/books?hl=en&lr=&id=zpPBCQAAQBAJ&oi=fnd&pg=PP1&dq=Smart+Textiles+and+their+Applications.+Woodhead+Publishing.&ots=5_TZjWfayv&sig=X5ZYbDM96meRAODQ_QrXHw8JFuk&redir_esc=y#v=onepage&q=Smart%20Textiles%20and%20their%20Applications.%20Woodhead%20Publishing.&f=false"
                             target="_blank">smart textiles</a>, and in aerospace for designing reliable <a
                             href="https://link.springer.com/article/10.1007/s10659-021-09860-6"
-                            target="_blank">deployable structures</a> . Inspired by origami, this field has led to
+                            target="_blank">deployable structures.</a> Inspired by origami, this field has led to
                         innovative solutions such as foldable emergency shelters and <a
                             href="https://www.pnas.org/doi/epdf/10.1073/pnas.1509465112" target="_blank">medical
                             devices</a> that navigate the human body's complexities. Additionally, it plays a
@@ -266,7 +280,7 @@
                         . These diverse applications showcase the practical relevance of this research and its potential
                         to industries.</p>
                     <details>
-                        <summary class="notice"><b>Projects</b></summary>
+                        <summary class="notice" ><b>Projects</b></summary>
                         <h3 id="helicoid_mobius_webpage">Stable M&ouml;bius bands from isometrically deformed helicoids
                             <a href="https://link.springer.com/article/10.1007/s10659-023-10008-x#"
                                 class="btn btn--info btn--small align-right">Link</a></h3>
