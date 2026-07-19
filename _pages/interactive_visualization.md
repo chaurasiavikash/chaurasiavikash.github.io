@@ -4,7 +4,7 @@ permalink: /interactive_visualization/
 title: interactive visualization
 description: Interactive research visualizations and web-based demos.
 nav: true
-nav_order: 5
+nav_order: 6
 ---
 
 Web-based visualization lets researchers share geometric and mechanical models without requiring specialized software. These demos keep the model in the browser, making it easier to inspect shapes, motions, and parameter effects directly.
