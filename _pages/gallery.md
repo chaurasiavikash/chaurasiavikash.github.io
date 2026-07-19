@@ -4,7 +4,7 @@ permalink: /gallery/
 title: gallery
 description: Research images, animations, and visualization outputs.
 nav: true
-nav_order: 4
+nav_order: 5
 ---
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
