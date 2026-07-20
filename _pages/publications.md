@@ -25,7 +25,7 @@ Publications, current through 07/2025. Links point to journal pages, PDFs, or th
 
 <div class="row">
   <div class="col col-sm-2 abbr">
-    <img class="preview z-depth-1 rounded" src="/assets/img/publication_preview/bodiesreg_overview.jpg" alt="BODIESReg registration pipeline overview">
+    <img class="preview z-depth-1 rounded" src="/assets/img/publication_preview/bodiesreg_overview.jpg" width="100%" height="auto" alt="BODIESReg registration pipeline overview" style="max-height: 120px; object-fit: contain;">
   </div>
   <div class="col-sm-8">
     <div class="title">BODIESReg: An open-source pipeline for registering 3D body scans using pose-aligned initialization</div>
