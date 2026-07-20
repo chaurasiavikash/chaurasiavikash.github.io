@@ -28,9 +28,9 @@ latest_posts:
 
 I work at Philips Healthcare in Best, Netherlands, as an MRI Reconstruction Algorithm Engineer. I develop MRI algorithms for perfusion imaging, short echo time imaging, and AI-assisted medical imaging.
 
-My background is in mechanical engineering, applied mathematics, computational mechanics, and biomechanics. Before joining Philips, I worked as a postdoctoral researcher at TU Delft on vision-based biomechanics and personalized musculoskeletal models. At OIST, I worked with [Prof. Eliot Fried](https://groups.oist.jp/mmmu/eliot-fried/) on geometric mechanics, including folding and mobility of unstretchable surfaces, Mobius and orientable bands, and energy-minimization models for virus-particle shapes.
+My background is in mechanical engineering, applied mathematics, computational mechanics, and biomechanics. Before joining Philips, I worked as a postdoctoral researcher at TU Delft on vision-based biomechanics and personalized musculoskeletal models. At OIST, I worked with [Prof. Eliot Fried](https://scholar.google.co.jp/citations?user=paMEzScAAAAJ&hl=en&oi=ao) on geometric mechanics, including folding and mobility of unstretchable surfaces, Mobius and orientable bands, and energy-minimization models for virus-particle shapes.
 
-I received my Ph.D. in Mechanical Engineering from the University of Houston. Before that, I completed my B.Tech. and M.Tech. in Mechanical Engineering at Indian Institute of Technology Kanpur (IIT Kanpur), one of India's leading engineering institutes.
+I received my Ph.D. in Mechanical Engineering from the University of Houston, where I worked with [Prof. Eliot Fried](https://scholar.google.co.jp/citations?user=paMEzScAAAAJ&hl=en&oi=ao) and [Prof. Yi-Chao Chen](https://www.me.uh.edu/faculty/chen-yi-chao). Before that, I completed my B.Tech. and M.Tech. in Mechanical Engineering at Indian Institute of Technology Kanpur (IIT Kanpur), one of India's leading engineering institutes.
 
 <div style="display: grid; gap: 0.75rem; margin: 1.25rem 0;">
   <div style="display: grid; grid-template-columns: 9rem 1fr; gap: 1rem; align-items: start;">
@@ -47,7 +47,7 @@ I received my Ph.D. in Mechanical Engineering from the University of Houston. Be
   </div>
   <div style="display: grid; grid-template-columns: 9rem 1fr; gap: 1rem; align-items: start;">
     <strong>2013-2018</strong>
-    <div>Ph.D. in Mechanical Engineering, University of Houston, Houston, USA</div>
+    <div>Ph.D. in Mechanical Engineering, University of Houston, with Prof. Eliot Fried and Prof. Yi-Chao Chen, Houston, USA</div>
   </div>
   <div style="display: grid; grid-template-columns: 9rem 1fr; gap: 1rem; align-items: start;">
     <strong>2007-2012</strong>
