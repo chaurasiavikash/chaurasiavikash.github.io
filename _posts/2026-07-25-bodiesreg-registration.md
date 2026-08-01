@@ -117,8 +117,8 @@ Code is available at [chaurasiavikash/BODIESReg](https://github.com/chaurasiavik
 Pose-aligned initialization depends on keypoint detection. If the detected keypoints are wrong, the inverse-kinematics step can initialize the body model in the wrong pose, and the later surface-fitting steps can inherit that error. Difficult poses, occlusions, missing scan regions, clothing, or unusual scan views can all make this worse.
 
 <figure>
-  <img src="{{ '/assets/img/blog/bodiesreg/keypoint_failure_adaptation.png' | relative_url }}" alt="Exaggerated keypoint detection failure example" style="width: 100%; max-width: 920px;">
-  <figcaption class="bodiesreg-caption">Image: exaggerated example of how visual cues can lead to an anatomically wrong model. This illustration is an adaptation of the original version created by <a href="https://x.com/PainSci" target="_blank" rel="noopener noreferrer"><strong>Paul Ingraham (PainScience.com)</strong></a>, <a href="https://x.com/PainSci" target="_blank" rel="noopener noreferrer">@PainSci</a>.</figcaption>
+  <img src="{{ '/assets/img/blog/bodiesreg/sagging_jeans.jpeg' | relative_url }}" alt="Sagging jeans visual example for keypoint detection failure" style="width: 100%; max-width: 920px;">
+  <figcaption class="bodiesreg-caption">Source/credit: original image by <a href="https://x.com/PainSci" target="_blank" rel="noopener noreferrer"><strong>Paul Ingraham (PainScience.com)</strong></a>, <a href="https://x.com/PainSci" target="_blank" rel="noopener noreferrer">@PainSci</a>. Used here as an exaggerated example of how visual cues can lead to an anatomically wrong model.</figcaption>
 </figure>
 
 Because BODIESReg uses detected keypoints to initialize 3D pose, errors in those keypoints can propagate into later registration steps. In BODIESReg, the pose editor provides a manual correction path when automatic keypoint detection fails. 
