@@ -96,7 +96,7 @@ The video below shows intermediate steps in BODIESReg. Before final pose-and-sha
 
 <figure>
   <video controls muted loop playsinline preload="metadata" class="bodiesreg-media">
-    <source src="{{ '/assets/img/blog/bodiesreg/pose_aligned_h264.mp4' | relative_url }}" type="video/mp4">
+    <source src="{{ '/assets/img/blog/bodiesreg/3DScan_002_03_mesh_open_with_pose.mp4' | relative_url }}" type="video/mp4">
   </video>
   <figcaption class="bodiesreg-caption">Video: registration with pose-aligned initialization. The red template starts close to the blue scan and converges to the intended anatomy.</figcaption>
 </figure>
@@ -105,7 +105,7 @@ In the second video, we show the same pose-and-shape optimization without pose-a
 
 <figure>
   <video controls muted loop playsinline preload="metadata" class="bodiesreg-media">
-    <source src="{{ '/assets/img/blog/bodiesreg/without_vs_with_pose_h264.mp4' | relative_url }}" type="video/mp4">
+    <source src="{{ '/assets/img/blog/bodiesreg/3DScan_002_03_mesh_open_without_vs_with_pose.mp4' | relative_url }}" type="video/mp4">
   </video>
   <figcaption class="bodiesreg-caption">Video: registration without pose-aligned initialization. Optimization reduces distance, but the fitted anatomy is wrong.</figcaption>
 </figure>
