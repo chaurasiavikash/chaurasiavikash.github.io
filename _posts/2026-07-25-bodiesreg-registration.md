@@ -23,20 +23,8 @@ BODIESReg is an open-source pipeline for registering SMPL-family parametric body
 Registration means assigning anatomical meaning to a raw scan by matching it to a body model whose anatomy is already known. A body model such as SMPL is also a surface, but it comes with structure. Its vertices have fixed identities. Its skeleton, joints, pose parameters, shape parameters, and body regions are defined in advance. If we can match this known template to an unknown scan, then labels from the template can be transferred to the scan.
 
 This transfer is what we want from registration. We start with a target point cloud that has geometry but no semantic structure. We end with a scan whose vertices can be interpreted through template correspondence: this region is the upper leg, this vertex is near the hip, this vertex belongs to the torso, and so on. Scanning gives us geometry and registration gives that geometry anatomical meaning.
- 
-Suppose the template has vertices
 
-$$
-\mathcal{V}=\{\mathbf{v}_j\}_{j=1}^{N},
-$$
-
-and the scan has vertices
-
-$$
-\mathcal{S}=\{\mathbf{u}_i\}_{i=1}^{N_S}.
-$$
-
-If template vertex $\mathbf{v}_j$ corresponds to scan vertex $\mathbf{u}_i$, then any anatomical label attached to $\mathbf{v}_j$ can be assigned to $\mathbf{u}_i$. This is how raw geometry becomes useful for landmark extraction, segmentation, and measurement.
+In practice, this means that each template vertex can be matched to a nearby part of the scan. Once that match exists, anatomical labels from the template can be transferred to the scan. This is how raw geometry becomes useful for landmark extraction, segmentation, and measurement.
 
 ## How Registration Is Performed
 
@@ -46,7 +34,7 @@ Registration requires correspondence between the template and the scan. We do no
 2. For each template vertex, choose a nearby scan vertex, often the nearest neighbor.
 3. Transfer labels from template vertices to their matched scan vertices.
 
-This nearest-neighbor step is simple and useful, but it depends strongly on where the template is placed before matching. If the arm of the template starts near the torso in the scan, nearest-neighbor matching may connect arm vertices to torso vertices. The match is geometrically close, but anatomically wrong.
+This nearest-neighbor step depends strongly on where the template is placed before matching. If the arm of the template starts near the torso in the scan, nearest-neighbor matching may connect arm vertices to torso vertices. The match is geometrically close, but anatomically wrong.
 
 For SMPL-family models, the template is not moved vertex by vertex. Instead, the mesh is generated from pose and shape parameters. We can write this as
 
@@ -56,7 +44,7 @@ $$
 
 where $\boldsymbol{\beta}$ controls body shape and $\boldsymbol{\theta}$ controls pose. Registration then becomes an optimization problem: find pose and shape parameters that place the generated mesh close to the scan.
 
-A common distance objective is the bidirectional Chamfer distance,
+A common distance objective is the bidirectional Chamfer distance. Here, $\mathcal{V}(\boldsymbol{\beta},\boldsymbol{\theta})$ denotes the template vertices generated from pose and shape parameters, and $\mathcal{S}$ denotes the scan vertices.
 
 $$
 E(\boldsymbol{\beta},\boldsymbol{\theta})
@@ -83,9 +71,7 @@ The video below shows why distance alone is a weak test for anatomical correctne
 
 ## What BODIESReg Adds
 
-BODIESReg changes the starting point for surface fitting. Instead of beginning from a default template pose, it estimates an approximate scan pose first, builds a pose-aligned template, and then optimizes pose and shape against the scan.
-
-BODIESReg adds a pose-estimation step before surface fitting. It projects the 3D scan into two orthogonal 2D views, detects anatomical keypoints in those views, and uses inverse kinematics to place the body model near the scan before optimizing pose and shape. This does not solve registration by itself, but it starts the optimizer in a more useful part of the search space.
+BODIESReg changes the starting point for surface fitting. Instead of beginning from a default template pose, it estimates an approximate scan pose first, builds a pose-aligned template, and then optimizes pose and shape against the scan. It does this by projecting the 3D scan into two orthogonal 2D views, detecting anatomical keypoints in those views, and using inverse kinematics to place the body model near the scan. We use 2D projections because reliable keypoint detectors are usually trained on images, not directly on raw 3D meshes.
 
 <figure>
   <img src="{{ '/assets/img/blog/bodiesreg/pipeline_overview.jpg' | relative_url }}" alt="BODIESReg pipeline overview" style="width: 100%; max-width: 920px;">
@@ -110,15 +96,15 @@ In the second video, we show the same pose-and-shape optimization without pose-a
   <figcaption class="bodiesreg-caption">Video: registration without pose-aligned initialization. Optimization reduces distance, but the fitted anatomy is wrong.</figcaption>
 </figure>
 
-The main addition is not another distance metric. BODIESReg improves the initialization, bringing the template closer to the input scan before distance minimization starts.
+The main addition is not another distance metric. BODIESReg improves the initialization, bringing the template closer to the input scan before distance minimization starts. After this distance-based fitting, BODIESReg refines the correspondence once more so the final mesh is close to the scan with better vertex-level matches.
 
 ## Limitations
 
-Pose-aligned initialization depends on keypoint detection. If the detected keypoints are wrong, the inverse-kinematics step can initialize the body model in the wrong pose, and surface fitting can carry that error forward. Difficult poses, occlusions, missing scan regions, clothing, or unusual scan views can all make this worse.
+Pose-aligned initialization depends on keypoint detection. If the detected keypoints are wrong, inverse kinematics can initialize the body model in the wrong pose, and surface fitting can carry that error forward. The example below is deliberately exaggerated: the visible outline suggests one body configuration, while the underlying anatomy is different. This is the kind of wrong visual cue that can make image-based keypoint detection fail.
 
 <figure>
   <img src="{{ '/assets/img/blog/bodiesreg/sagging_jeans.jpeg' | relative_url }}" alt="Sagging jeans visual example for keypoint detection failure" style="width: 100%; max-width: 680px; display: block; margin: 0 auto;">
-  <figcaption class="bodiesreg-caption">Visual ambiguity can mislead pose/keypoint estimation, especially when clothing changes the apparent body shape. Source/credit: original image by <a href="https://x.com/PainSci" target="_blank" rel="noopener noreferrer"><strong>Paul Ingraham (PainScience.com)</strong></a>, <a href="https://x.com/PainSci" target="_blank" rel="noopener noreferrer">@PainSci</a>.</figcaption>
+  <figcaption class="bodiesreg-caption">Visual ambiguity can mislead keypoint detection when image appearance does not match the underlying anatomy. Source/credit: original image by <a href="https://x.com/PainSci" target="_blank" rel="noopener noreferrer"><strong>Paul Ingraham (PainScience.com)</strong></a>, <a href="https://x.com/PainSci" target="_blank" rel="noopener noreferrer">@PainSci</a>.</figcaption>
 </figure>
 
 Because BODIESReg uses detected keypoints to initialize 3D pose, errors in those keypoints can propagate into later registration steps. In BODIESReg, the pose editor provides a manual way to correct the pose when automatic keypoint detection fails.
@@ -134,7 +120,7 @@ Because BODIESReg uses detected keypoints to initialize 3D pose, errors in those
 
 We built BODIESReg because we needed to batch-process optical and MR body scans, but could not find a published open-source framework for automatic registration without dataset-specific training. We also needed registrations that were not only numerically close, but anatomically meaningful.
 
-BODIESReg runs locally, works on modest hardware, and includes manual correction tools for difficult cases.
+BODIESReg runs locally, works on modest hardware, and includes manual correction tools for difficult cases. The goal is practical: turn scans into anatomy-aware data that can be measured, compared, and used in downstream biomechanical models.
 
 ## Project Links
 
